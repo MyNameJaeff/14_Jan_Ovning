@@ -1,0 +1,500 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Bombardier', sans-serif;
+}
+
+/* All backgrounds and such */
+
+body,
+html {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    background-color: #353131;
+}
+
+/* Reusable Pseudo-Element Style for Gradient Blur */
+.section::before,
+.section::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 5vh;
+    /* Adjust height for blur effect */
+    z-index: 1;
+    /* Positioned above the background but below content */
+}
+
+.section:not(.frontPage)::before {
+    top: 0;
+    background: linear-gradient(to bottom, rgba(53, 49, 49, 0.9), rgba(53, 49, 49, 0));
+    backdrop-filter: blur(0.1vh);
+    /* Adjust blur intensity */
+}
+
+.section:not(.lore)::after {
+    bottom: 0;
+    background: linear-gradient(to top, rgba(53, 49, 49, 0.9), rgba(53, 49, 49, 0));
+    backdrop-filter: blur(.1vh);
+    /* Adjust blur intensity */
+}
+
+/* General Section Styling */
+.section {
+    position: relative;
+    /* Ensure pseudo-elements are positioned correctly */
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    /* Prevent pseudo-elements from spilling out */
+}
+
+/* Individual Section Backgrounds */
+.frontPage {
+    background-image: url('images/ror2background.png');
+}
+
+.about {
+    background-image: url('https://www.gearboxpublishing.com/wp-content/uploads/2019/04/5environment_abyssaldepths_003.jpg');
+}
+
+.items {
+    background-image: url('https://www.gearboxpublishing.com/wp-content/uploads/2019/04/8gameplay_mage_009.jpg');
+}
+
+.enemies {
+    background-image: url('https://www.gearboxpublishing.com/wp-content/uploads/2019/04/7gameplay_mercenary_001.jpg');
+}
+
+.stages {
+    background-image: url('https://www.gearboxpublishing.com/wp-content/uploads/2019/04/1environment_rallypointdelta_001.jpg');
+}
+
+.lore {
+    background-image: url('images/Screenshot\ 2025-01-14\ at\ 12-37-21\ Reddit\ -\ https\ __i.redd.it_iy2favkprw161.png.png');
+}
+
+
+/* All text */
+header {
+    position: relative;
+    /* Change this from absolute to relative */
+    height: 10vh;
+    width: 98vw;
+    /* 100vw - 2vw padding */
+    padding: 1vw 1vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+header>a {
+    width: 14vw;
+}
+
+header a img {
+    width: 100%;
+}
+
+nav {
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    height: 100%;
+    flex-grow: 2;
+}
+
+header ul li a {
+    text-decoration: none;
+    color: #fefdbf;
+    font-size: 1.5vw;
+    text-shadow:
+        .1vw .1vw 0 #374453,
+        -.1vw -.1vw 0 #374453,
+        .1vw -.1vw 0 #374453,
+        -.1vw .1vw 0 #374453;
+    transition: transform 0.3s ease;
+    display: inline-block;
+    padding: 0.5vw;
+}
+
+.links a:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+nav>a {
+    flex-grow: 1;
+    margin: 1vw;
+}
+
+.buyButton {
+    width: 100%;
+    height: 100%;
+    padding: .8vw .4vw;
+    background-color: #556777;
+    border: .2vw solid #9296a6;
+    border-radius: .2vw;
+    font-size: 1.5vw;
+    color: #fafcfc;
+    text-shadow: #41474e .1vw .1vw 0;
+    transition: all 0.3s ease;
+}
+
+.buyButton:hover {
+    background-color: #ceccb5;
+    border: .2vw solid #fefefd;
+    color: #fafcfc;
+    text-shadow: #41474e .1vw .1vw 0;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.buyButton:active {
+    background-color: #fefefd;
+    border: .2vw solid #cecbcb;
+    color: #556777;
+    text-shadow: #41474e .1vw .1vw 0;
+}
+
+
+main>div {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+main div h1 {
+    font-size: 3vw;
+    color: #fefdbf;
+    text-shadow:
+        .1vw .1vw 0 #374453,
+        -.1vw -.1vw 0 #374453,
+        .1vw -.1vw 0 #374453,
+        -.1vw .1vw 0 #374453;
+    margin-left: 3vw;
+    margin-top: 3vw;
+}
+
+main div p {
+    width: 80%;
+    font-size: 1.5vw;
+    color: #fefdbf;
+    text-shadow:
+        .1vw .1vw 0 #374453,
+        -.1vw -.1vw 0 #374453,
+        .1vw -.1vw 0 #374453,
+        -.1vw .1vw 0 #374453;
+    margin-left: 5vw;
+    margin-top: 1vw;
+    background-color: #313135c1;
+    padding: 2vw;
+    border-radius: 2vw;
+}
+
+/* Modal */
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    transition: opacity 200ms;
+    visibility: hidden;
+    opacity: 0;
+    height: 100vh;
+}
+
+.overlay.light {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.overlay .cancel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: default;
+}
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+    margin: 5vw auto;
+    padding: 2vw;
+    background-color: #353131;
+    border: .1vw solid #666;
+    width: 80vw;
+    height: 70vh;
+    box-shadow: 0 0 5vw rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.popup.light {
+    border-color: #aaa;
+    box-shadow: 0 .2vw 1vw rgba(0, 0, 0, 0.25);
+}
+
+.popup .close {
+    position: absolute;
+    top: .1vh;
+    right: .1vh;
+    width: 5vw;
+    opacity: 0.8;
+    transition: all 200ms;
+    font-size: 4vw;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    color: #8d8d8d;
+}
+
+.popup .close:hover {
+    opacity: 1;
+}
+
+.popup .content {
+    max-height: 70vh;
+    overflow: scroll;
+}
+
+.popup h1 {
+    font-size: 2.5vw;
+}
+
+.popup p {
+    font-size: 1.5vw;
+    margin: .5vw 0 1vw 2vw;
+}
+
+.content ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1vw;
+}
+
+.content ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    width: 20%;
+    height: 100%;
+}
+
+.content ul li a {
+    width: 100%;
+    height: 100%;
+}
+
+.content ul li button {
+    width: 100%;
+    height: 100%;
+    padding: 1vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: .5vw;
+    transition: all 0.3s ease;
+    background-color: #556777;
+    border: .2vw solid #9296a6;
+    color: #fafcfc;
+    text-shadow: #41474e .1vw .1vw 0;
+
+}
+
+.content ul li button:hover {
+    background-color: #556777;
+    border: .2vw solid #9296a6;
+    color: #fafcfc;
+    text-shadow: #41474e .1vw .1vw 0;
+    cursor: pointer;
+    transform: scale(1.05);
+
+    /* Reduced the scaling */
+    &:active {
+        background-color: #fefefd;
+        border: .2vw solid #cecbcb;
+        color: #556777;
+        text-shadow: #41474e .1vw .1vw 0;
+    }
+}
+
+
+.content ul li button p {
+    font-size: 1.5vw;
+    flex-grow: 1;
+}
+
+.storeLogo {
+    width: 10%;
+}
+
+
+
+
+/* Media Query for Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+
+    .frontPage,
+    .about,
+    .items,
+    .enemies,
+    .stages,
+    .lore {
+        background-position: center;
+    }
+
+    main div h1 {
+        font-size: 10vw;
+        margin-left: 5vw;
+        margin-top: 15vw;
+    }
+
+    main div p {
+        font-size: 5vw;
+        margin-left: 6vw;
+        padding: 3vw;
+        border-radius: 2vw;
+    }
+
+    header {
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header>a {
+        width: 90%;
+        margin-top: 1vh;
+    }
+
+    header>a img {
+        width: 100%;
+    }
+
+    nav {
+        width: 100%;
+        height: 40vh;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    nav ul {
+        width: 100%;
+        height: 50%;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    nav ul li {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    header ul li a {
+        text-align: center;
+        font-size: 8vw;
+        /* Increase font size for better readability */
+        padding: 1.5vw;
+        /* Increase padding for easier click/tap */
+    }
+
+    .buyButton {
+        font-size: 8vw;
+        height: 7vh;
+    }
+
+    /* Modal */
+    .overlay {
+        height: 100vh;
+    }
+
+    .popup {
+        padding: 5vw;
+    }
+
+    .popup h1 {
+        font-size: 9vw;
+    }
+
+    .popup p {
+        font-size: 5vw;
+        margin-left: 5vw;
+        margin-top: 2vw;
+    }
+
+    .content {
+        height: 100%;
+    }
+
+    .content ul {
+        margin: 5vw;
+        list-style: none;
+        height: fit-content;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .content ul li {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+    }
+
+    .content ul li a {
+        width: 100%;
+        height: 8vh;
+    }
+
+    .content ul li button {
+        width: 100%;
+        height: 100%;
+        padding: 2vw;
+        font-size: 4vw;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .content ul li button p {
+        margin: 0;
+        flex-grow: 1;
+    }
+
+    .storeLogo {
+        width: 20%;
+    }
+
+    .popup .close {
+        font-size: 15vw;
+        right: 1vh;
+        width: fit-content;
+        height: fit-content;
+        top: -1.5vh;
+    }
+}
